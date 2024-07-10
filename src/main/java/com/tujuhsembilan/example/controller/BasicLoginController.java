@@ -55,6 +55,7 @@ public class BasicLoginController {
                 .audience(List.of(authProp.getUuid()))
                 .subject(((User) auth.getPrincipal()).getUsername())
                 // You SHOULD set expiration, claims, etc here too
+                .claim("authorities", auth.getAuthorities())
                 .build()));
     return ResponseEntity.ok(jwt.getTokenValue());
   }
